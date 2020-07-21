@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.travelagency.mapper.TravelMapper">
+
+    <insert id="insertTravel" useGeneratedKeys="true" keyColumn="id" keyProperty="travel.id">
+        insert into travels (
+        travel_name
+        ,number_of_seats
+        ,number_occupied_seats
+        ,price_per_seat
+        ,start_date
+        ,finish_date)
+        values (
+        #{travel.travelName}
+        ,#{travel.numberOfSeats}
+        ,#{travel.numberOccupiedSeats}
+        ,#{travel.pricePerSeat}
+        ,#{travel.startDate}
+        ,#{travel.finishDate}
+        )
+    </insert>
+
+    <insert id="insertTravelAdditionalItem" >
+        insert into travel_additional_items (
+        travel_id,
+        additional_item_id
+        ) values (
+        #{item.travelId}
+        ,#{item.additionalItemId}
+        )
+    </insert>
+
+    <insert id="insertTravelAccommodation">
+        insert into travel_accommodations (
+        travel_id
+        ,accommodation_id
+        ) values (
+        #{travelAccommodation.travelId}
+        ,#{travelAccommodation.accommodationId}
+        )
+    </insert>
+
+    <sql id="selectColumnsTravel">
+         t.id
+        ,t.travel_name
+        ,t.number_of_seats
+        ,t.number_occupied_seats
+        ,t.price_per_seat
+        ,t.start_date
+        ,t.finish_date
+        ,i.item_name item_item_name
+        ,i.price_per_seat item_price_per_seat
+        ,a.type_accommodation accommodation_type_accommodation
+        ,a.address accommodation_address
+        ,a.price_per_day accommodation_price_per_day
+    </sql>
+
+    <resultMap id="travelMap" type="com.example.travelagency.controller.model.travel.TravelResponse" autoMapping="true">
+        <id property="id" column="id"/>
+        <id property="travelName" column="travel_name"/>
+        <id property="numberOfSeats" column="number_of_seats"/>
+        <id property="numberOccupiedSeats" column="number_occupied_seats"/>
+        <id property="pricePerSeat" column="price_per_seat"/>
+        <id property="startDate" column="start_date"/>
+        <id property="finishDate" column="finish_date"/>
+        <collection property="itemsList" columnPrefix="item_" resultMap="itemMap"/>
+        <collection property="accommodationList" columnPrefix="accommodation_" resultMap="accommodationMap"/>
+    </resultMap>
+
+    <resultMap id="accommodationMap" type="com.example.travelagency.controller.model.travel.Accommodation" autoMapping="true">
+        <id property="typeAccommodation" column="type_accommodation"/>
+        <id property="address" column="address"/>
+        <id property="pricePerDay" column="price_per_day"/>
+    </resultMap>
+
+    <resultMap id="itemMap" type="com.example.travelagency.controller.model.travel.AdditionalItem" autoMapping="true">
+        <id property="itemName" column="item_name"/>
+        <id property="pricePerSeat" column="price_per_seat"/>
+    </resultMap>
+
+    <select id="selectTravel" resultMap="travelMap">
+        select
+        <include refid="selectColumnsTravel"/>
+        from travels t inner join  travel_additional_items ti on t.id = ti.travel_id inner join additional_items i on i.id = ti.additional_item_id
+        inner join travel_accommodations ts on t.id = ts.travel_id inner join accommodations a on ts.accommodation_id = a.id
+        where t.id = #{id}
+    </select>
+
+    <update id="updateTravel">
+      update travels t
+      set
+         t.travel_name = #{travel.travelName}
+        ,t.number_of_seats = #{travel.numberOfSeats}
+        ,t.number_occupied_seats = #{travel.numberOccupiedSeats}
+        ,t.price_per_seat = #{travel.pricePerSeat}
+        ,t.start_date =#{travel.startDate}
+        ,t.finish_date = #{travel.finishDate}
+      where
+         t.id = #{travel.id}
+    </update>
+
+</mapper>

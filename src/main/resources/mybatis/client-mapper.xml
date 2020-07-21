@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travelagency.mapper.ClientMapper">
+
+    <insert id="insertClient" useGeneratedKeys="true" keyColumn="id" keyProperty="client.id">
+        insert into clients (
+        first_name
+        ,last_name
+        ,phone_number
+        ,address
+        ) values (
+        #{client.firstName}
+        ,#{client.lastName}
+        ,#{client.phoneNumber}
+        ,#{client.address}
+        )
+    </insert>
+
+    <select id="selectClient" resultType="com.example.travelagency.controller.model.order.ClientResponse">
+        select
+          c.id
+          ,c.first_name
+          ,c.last_name
+          ,c.phone_number
+          ,c.address
+          from clients c where c.id = #{id}
+    </select>
+
+</mapper>

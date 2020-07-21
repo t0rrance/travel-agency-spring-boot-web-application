@@ -1,0 +1,103 @@
+<h3 style="margin-left: 30px">Dodaj wycieczkę do katalogu</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName" style="margin-left: 30px">Nazwa wycieczki</label>
+      <input type="text" class="form-control" style="margin-left: 30px" id="firstName" required [(ngModel)]="travelRequest.travelName" name="firstName">
+    </div>
+    <div class="form-group">
+      <label for="numberOfSeats" style="margin-left: 30px">Liczba uczestników</label>
+      <input type="text" class="form-control" style="margin-left: 30px" id="numberOfSeats" required [(ngModel)]="travelRequest.numberOfSeats" name="numberOfSeats">
+    </div>
+    <div class="form-group">
+      <label for="name" style="margin-left: 30px">Cena jednostkowa</label>
+      <input type="text" class="form-control" style="margin-left: 30px" id="name" required [(ngModel)]="travelRequest.pricePerSeat" name="firstName">
+    </div>
+    <div class="form-group">
+      <label for="name" style="margin-left: 30px">Data rozpoczęcia wycieczki</label>
+      <input type="text" class="form-control" style="margin-left: 30px" id="firopisstNadme" required [(ngModel)]="travelRequest.startDate" name="s">
+    </div>
+    <div class="form-group">
+    <label for="name" style="margin-left: 30px">Data zakończenia wycieczki</label>
+    <input type="text" class="form-control" style="margin-left: 30px" id="firopissstNadme" required [(ngModel)]="travelRequest.finishDate" name="s">
+
+
+    <form (ngSubmit)="addAdditonalItemToList()">
+      <div class="form-group">
+        <label for="name" style="margin-left: 30px">Dodatek - nazwa </label>
+        <input type="text" class="form-control" style="margin-left: 30px" id="add" required [(ngModel)]="additionalItem.itemName" name="s">
+      </div>
+      <div class="form-group">
+        <label for="name" style="margin-left: 30px">Dodatek - cena jednostkowa</label>
+        <input type="text" class="form-control" style="margin-left: 30px" id="ss" required [(ngModel)]="additionalItem.pricePerSeat" name="s">
+      </div>
+      <button type="submit" class="btn btn-success" style="margin-left: 30px">Dodaj dodatek</button>
+    </form>
+
+    <form (ngSubmit)="addAccommodationToList()">
+      <div class="form-group">
+        <label for="name" style="margin-left: 30px">Zakwaterowanie - nazwa </label>
+        <input type="text" class="form-control" style="margin-left: 30px" id="adda" required [(ngModel)]="accommodation.typeAccommodation" name="s">
+      </div>
+      <div class="form-group">
+        <label for="name" style="margin-left: 30px">Zakwaterowanie - adres</label>
+        <input type="text" class="form-control" style="margin-left: 30px" id="ssa" required [(ngModel)]="accommodation.address" name="s">
+      </div>
+      <div class="form-group">
+        <label for="name" style="margin-left: 30px">Zakwaterowanie - cena za dobę</label>
+        <input type="text" class="form-control" style="margin-left: 30px" id="ressa" required [(ngModel)]="accommodation.pricePerDay" name="s">
+      </div>
+      <button type="submit" class="btn btn-success" style="margin-left: 30px">Dodaj zakwaterowanie</button>
+    </form>
+
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-left: 30px">Zapisz wycieczkę w katalogu</button>
+  </form>
+</div>
+
+
+
+<div [hidden]="!submitted">
+  <h4>Poprawnie dodano wycieczkę do katalogu!</h4>
+</div>
+<hr/>
+<div [hidden]="!submitted">
+  <div>
+    <label style="margin-left: 30px"><b>Id wycieczki: </b></label> {{travelResponse.id}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Nazwa wycieczki: </b></label> {{travelResponse.travelName}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Liczba miejsc: </b></label> {{travelResponse.numberOfSeats}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Cena za osobę: </b></label> {{travelResponse.pricePerSeat}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Liczba miejsc zajętych: </b></label> {{travelResponse.numberOccupiedSeats}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Data rozpoczęcia wycieczki: </b></label> {{travelResponse.startDate}}
+  </div>
+  <div>
+    <label style="margin-left: 30px"><b>Data zakończenia wycieczki: </b></label> {{travelResponse.finishDate}}
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Nazwa dodatku</th>
+        <th scope="col">Cena dodatku</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of tempItemListResponse">
+        <td>{{item.itemName}}</td>
+        <td>{{item.pricePerSeat}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
