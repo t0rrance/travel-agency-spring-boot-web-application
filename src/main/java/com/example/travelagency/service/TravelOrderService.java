@@ -28,6 +28,7 @@ public class TravelOrderService {
     public TravelOrderResponse addTravelOrder(TravelOrderRequest travelOrderRequest) {
         ClientResponse clientOrder = clientService.addClient(travelOrderRequest.getClientOrder());
         TravelOrder travelOrder = createTravelOrder(clientOrder.getId(), TEMPORARY_USER_TEST, travelOrderRequest);
+        travelOrderMapper.insertTravelOrder(travelOrder);
         //todo create client order
         //todo create order
         //todo create client attendance travel

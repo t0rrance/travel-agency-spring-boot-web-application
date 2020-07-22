@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.travelagency.mapper.TravelOrderMapper">
+
+    <insert id="insertTravelOrder" useGeneratedKeys="true" keyColumn="id" keyProperty="travelOrder.id">
+        insert into travel_orders (
+        travel_id
+        ,client_id
+        ,user_id
+        ,number_of_seats
+        ,order_date
+        ,payment_date
+        ) values (
+        #{travelOrder.travelId}
+        ,#{travelOrder.clientId}
+        ,#{travelOrder.userId}
+        ,#{travelOrder.numberOfSeats}
+        ,#{travelOrder.orderDate}
+        ,#{travelOrder.paymentDate}
+        )
+    </insert>
+
+</mapper>

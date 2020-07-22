@@ -1,0 +1,18 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  id="2"  author="MIKE">
+        <insert  tableName="clients">
+            <column name="first_name" value="Michał" />
+            <column name="last_name" value="Anioł" />
+            <column name="phone_number" value="123456789" />
+            <column name="address" value="Kocjana"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="clients"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

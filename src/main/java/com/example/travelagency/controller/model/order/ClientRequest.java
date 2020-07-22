@@ -10,7 +10,7 @@ public class ClientRequest {
     @ApiModelProperty("Nazwisko klienta")
     private String lastName;
     @ApiModelProperty("Numer telefonu")
-    private String phoneNumber;
+    private int phoneNumber;
     @ApiModelProperty("Adres zamieszkania")
     private String address;
 }
