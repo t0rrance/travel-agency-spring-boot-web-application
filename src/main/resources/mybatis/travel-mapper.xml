@@ -81,13 +81,23 @@
         <id property="pricePerSeat" column="price_per_seat"/>
     </resultMap>
 
-    <select id="selectTravel" resultMap="travelMap">
+    <sql id="selectTravel">
         select
         <include refid="selectColumnsTravel"/>
         from travels t inner join  travel_additional_items ti on t.id = ti.travel_id inner join additional_items i on i.id = ti.additional_item_id
         inner join travel_accommodations ts on t.id = ts.travel_id inner join accommodations a on ts.accommodation_id = a.id
+    </sql>
+
+    <select id="selectTravel" resultMap="travelMap">
+       <include refid="selectTravel"/>
         where t.id = #{id}
     </select>
+
+    <select id="selectTravels" resultMap="travelMap">
+        <include refid="selectTravel"/>
+        order by t.id
+    </select>
+
 
     <update id="updateTravel">
       update travels t

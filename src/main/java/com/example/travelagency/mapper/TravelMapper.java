@@ -7,18 +7,22 @@ import com.example.travelagency.mapper.model.TravelAdditionalItem;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface TravelMapper {
-    void insertTravel(@Param("travelRequest") Travel travel);
+
+    void insertTravel(@Param("travel") Travel travel);
 
     Optional<TravelResponse> selectTravel(@Param("id") Long id);
 
-    void updateTravel(@Param("travelRequest") Travel travel);
+    void updateTravel(@Param("travel") Travel travel);
 
     void insertTravelAdditionalItem(@Param("item") TravelAdditionalItem item);
 
     void insertTravelAccommodation(@Param("travelAccommodation") TravelAccommodation travelAccommodation);
+
+    List<TravelResponse> selectTravels();
 
 }

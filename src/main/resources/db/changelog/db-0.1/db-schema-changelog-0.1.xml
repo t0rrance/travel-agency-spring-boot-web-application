@@ -2,5 +2,11 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="user/user.xml" relativeToChangelogFile="true"/>
+    <include file="accommodation/accommodation.xml" relativeToChangelogFile="true"/>
     <include file="client/client.xml" relativeToChangelogFile="true"/>
+    <include file="additional_item/additional_item.xml" relativeToChangelogFile="true"/>
+    <include file="travel/travel.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>

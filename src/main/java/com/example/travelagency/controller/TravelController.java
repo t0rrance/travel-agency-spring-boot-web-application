@@ -3,20 +3,20 @@ package com.example.travelagency.controller;
 import com.example.travelagency.controller.model.travel.TravelRequest;
 import com.example.travelagency.controller.model.travel.TravelResponse;
 import com.example.travelagency.service.TravelService;
-import lombok.NonNull;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/travels")
+@RequestMapping("/api/admin/travels")
 public class TravelController {
 
     private final TravelService travelService;
@@ -25,11 +25,19 @@ public class TravelController {
         this.travelService = travelService;
     }
 
+    @ResponseBody
+    @GetMapping
+    public ResponseEntity<List<TravelResponse>> getAll() {
+        List<TravelResponse> travels = travelService.getTravels();
+        return ResponseEntity.ok().body(travels);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<TravelResponse> get(@PathVariable Long id) {
-        if(travelService.getTravel(id).isEmpty()) {
+        if (travelService.getTravel(id).isEmpty()) {
             return ResponseEntity.status(FORBIDDEN).build();
         }
+
         TravelResponse response = travelService.getTravel(id).orElseThrow();
         return ResponseEntity.ok(response);
     }
@@ -43,7 +51,7 @@ public class TravelController {
     @PutMapping("/{id}")
     public ResponseEntity<TravelResponse> update(@PathVariable Long id,
                                                  @RequestBody @Valid @NotNull TravelRequest travelRequest) {
-        if(travelService.getTravel(id).isEmpty()) {
+        if (travelService.getTravel(id).isEmpty()) {
             return ResponseEntity.status(NOT_FOUND).build();
         }
         TravelResponse response = travelService.updateTravel(id, travelRequest);

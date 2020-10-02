@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  id="7"  author="Mike">
+        <createTable  tableName="travel_additional_items">
+            <column name="travel_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_travel_additional_items_travel_id" references="travels(id)"/>
+            </column>
+            <column name="additional_item_id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_travel_additional_additional_item_id" references="additional_items(id)"/>
+            </column>
+        </createTable>
+        <rollback>
+            drop table travel_additional_items
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

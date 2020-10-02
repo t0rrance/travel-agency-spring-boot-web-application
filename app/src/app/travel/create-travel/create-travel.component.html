@@ -21,7 +21,7 @@
     <label for="name" style="margin-left: 30px">Data zakończenia wycieczki</label>
     <input type="text" class="form-control" style="margin-left: 30px" id="firopissstNadme" required [(ngModel)]="travelRequest.finishDate" name="s">
 
-
+<h3 style="margin-left: 30px">Dodatki wycieczki</h3>
     <form (ngSubmit)="addAdditonalItemToList()">
       <div class="form-group">
         <label for="name" style="margin-left: 30px">Dodatek - nazwa </label>
@@ -34,6 +34,7 @@
       <button type="submit" class="btn btn-success" style="margin-left: 30px">Dodaj dodatek</button>
     </form>
 
+<h3 style="margin-left: 30px">Zakwaterowanie </h3>
     <form (ngSubmit)="addAccommodationToList()">
       <div class="form-group">
         <label for="name" style="margin-left: 30px">Zakwaterowanie - nazwa </label>
@@ -54,9 +55,6 @@
     <button type="submit" class="btn btn-success" style="margin-left: 30px">Zapisz wycieczkę w katalogu</button>
   </form>
 </div>
-
-
-
 <div [hidden]="!submitted">
   <h4>Poprawnie dodano wycieczkę do katalogu!</h4>
 </div>

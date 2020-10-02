@@ -9,6 +9,8 @@ import java.util.List;
 
 @Data
 public class TravelOrderRequest {
+    @ApiModelProperty("UserName pracownika rejestrującego umowę")
+    private String userName;
     @ApiModelProperty("Identyfikator wykupionej wycieczki")
     private Long travelId;
     @ApiModelProperty("Klient wykupujący wycieczkę")

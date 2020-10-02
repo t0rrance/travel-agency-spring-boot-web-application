@@ -4,11 +4,50 @@
     <!--Angular-->
   </a>
   <div class="navbar-nav mr-auto">
+    <!--<li class="nav-item">-->
+      <!--<a href="admin" class="nav-link" *ngIf="isAdmin">Panel admin</a>-->
+    <!--</li>-->
     <li class="nav-item">
-      <a href="create" class="nav-link" >Wycieczki</a>
+      <a href="travels" class="nav-link" *ngIf="isLogged">Wycieczki</a>
     </li>
     <li class="nav-item">
-      <a href="travel" class="nav-link">Dodatki</a>
+      <a href="orders" class="nav-link" *ngIf="isLogged">Wykonaj zamówienie</a>
+    </li>
+    <!--<li class="nav-item">-->
+      <!--<a href="teams" class="nav-link" *ngIf="isLogged">Ekipy</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a href="employees" class="nav-link" *ngIf="isLogged">Pracownicy</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a href="registers" class="nav-link" *ngIf="isAdmin">Rejestr godzin pracy</a>-->
+    <!--</li>-->
+    <!--<li class="nav-item">-->
+      <!--<a href="user/registers/create" class="nav-link" *ngIf="isLogged&&!isAdmin">Rejestr godzin pracy</a>-->
+    <!--</li>-->
+  </div>
+  <div class="navbar-nav ml-auto" *ngIf="!currentUser">
+    <li class="nav-item">
+      <a href="/register" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span> Zarejestruj
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/login" class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span> Zaloguj
+      </a>
+    </li>
+  </div>
+  <div class="navbar-nav ml-auto" *ngIf="currentUser">
+    <li class="nav-item">
+      <a href="/profile" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span> {{currentUser.userName}}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logOut()" class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span> Wyloguj
+      </a>
     </li>
   </div>
 </nav>

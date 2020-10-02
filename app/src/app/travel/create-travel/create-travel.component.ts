@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {TravelRequest} from "../travelRequest";
-import {UserService} from "../../service/user.service";
 import {TravelResponse} from "../travelResponse";
 import {AdditionalItem} from "../additionalItem";
 import {Accommodation} from "../accomodation";
+import {AdminService} from "../../service/admin.service";
 
 @Component({
   selector: 'app-create-travel',
@@ -16,18 +16,18 @@ export class CreateTravelComponent {
   travelResponse: TravelResponse = new TravelResponse();
   additionalItem: AdditionalItem = new AdditionalItem();
   additionalItemList: AdditionalItem [] = [];
-  submitted = false;
   tempItemListResponse: AdditionalItem [] = [];
+  submitted = false;
   accommodationList : Accommodation [] = [];
   accommodation: Accommodation = new Accommodation();
 
-  constructor(private userService: UserService) {
+  constructor(private adminService: AdminService) {
   }
 
   save() {
     this.travelRequest.itemsList = this.additionalItemList;
     this.travelRequest.accommodationList = this.accommodationList;
-    this.userService.createTeam(this.travelRequest)
+    this.adminService.createTravel(this.travelRequest)
       .subscribe(data => {
         console.log(data);
         this.travelResponse = data;

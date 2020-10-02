@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card card-container">
+    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" id="profile-img" class="profile-img-card"/>
+    <form name="form-signup" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':f.submitted &&!userName.valid}">
+        <label for="userName">Nazwa użytkownika</label>
+        <input type="text" name="userName" class="form-control input-text-custom" id="userName" [(ngModel)]="user.userName" #username="ngModel" required/>
+        <div class="alert alert-danger" style="margin-top: 5px" *ngIf="f.submitted && !userName.valid">
+          Podaj nazwę użytkownika!
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':f.submitted &&!firstName.valid}">
+        <label for="firstName">Imię</label>
+        <input type="text" name="firstName" class="form-control input-text-custom" id="firstName" [(ngModel)]="user.firstName" #username="ngModel" required/>
+        <div class="alert alert-danger" style="margin-top: 5px" *ngIf="f.submitted && !firstName.valid">
+          Podaj swoje imię!
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':f.submitted &&!username.valid}">
+        <label for="lastName">Nazwisko</label>
+        <input type="text" name="lastName" class="form-control input-text-custom" id="lastName" [(ngModel)]="user.lastName" #username="ngModel" required/>
+        <div class="alert alert-danger" style="margin-top: 5px" *ngIf="f.submitted && !lastName.valid">
+          Podaj swoje nazwisko!
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':f.submitted &&!password.valid}">
+        <label for="password">Hasło</label>
+        <input type="password" name="password" class="form-control input-text-custom" id="password" [(ngModel)]="user.password" #password="ngModel" required/>
+        <div class="alert alert-danger" style="margin-top: 5px" *ngIf="f.submitted && !password.valid">
+          Wprowadź hasło!
+        </div>
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin form-submit-button">Zarejestruj</button>
+    </form>
+    <a [routerLink]="['/login']" class="btn btn-link">Posiadam już konto</a>
+  </div>
+</div>

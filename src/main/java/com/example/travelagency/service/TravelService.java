@@ -144,7 +144,7 @@ public class TravelService {
 
     @Transactional(readOnly = true)
     public Optional<TravelResponse> getTravel(Long id) {
-        return travelMapper.selectTravel(id);
+        return Optional.ofNullable(travelMapper.selectTravel(id)).orElse(null);
     }
 
     @Transactional
@@ -152,6 +152,11 @@ public class TravelService {
         Travel travel = createTravel(id, travelRequest);
         travelMapper.updateTravel(travel);
         return travelMapper.selectTravel(id).orElseThrow();
+    }
+
+    @Transactional(readOnly = true)
+    public List<TravelResponse> getTravels() {
+        return travelMapper.selectTravels();
     }
 
 }

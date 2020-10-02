@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="user-container">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col col-xs-6">
+            <h3 class="panel-title">Katalog wycieczek</h3>
+            <button (click)="createRegister()" class="btn btn-danger">Utwórz rejestr</button>
+            <button (click)="onSubmit()" style="margin-left: 20px" class="btn btn-success btn-xm">Zapisz rejestr
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Liczba uczestników</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Liczba miesc zajętych</th>
+            <th scope="col">Data rozpoczęcia</th>
+            <th scope="col">Data zakończenia</th>
+            <th scope="col">Opcje</th>
+
+            <!--<th scope="col" *ngIf="isAdmin" >Opcje edycji</th>-->
+            <!--<th scope="col" *ngIf="!isAdmin" >Szczegóły</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let travel of travelsList ">
+            <td>{{travel.travelName}}</td>
+            <td>{{travel.numberOfSeats}}</td>
+            <td>{{travel.pricePerSeat}}</td>
+            <td>{{travel.numberOccupiedSeats}}</td>
+            <td>{{travel.startDate | date:'yyyy-MM-dd'}}</td>
+            <td>{{travel.finishDate | date:'yyyy-MM-dd'}}</td>
+            <!--<td>-->
+              <!--<input type="text" class="form-control" id="registerName" required [(ngModel)]="register.workTime"-->
+                     <!--name="registerName">-->
+            <!--</td>-->
+            <!--<td>-->
+              <!--<input type="text" class="form-control" id="absence" required [(ngModel)]="register.absence"-->
+                     <!--name="absence">-->
+            <!--</td>-->
+            <td>
+            <button (click)="orderTravel(travel.id)" class="btn btn-primary"  style="margin-right: 10px">Zamów</button>
+            <!--<button *ngIf="isAdmin" (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>-->
+            <!--<button  (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>-->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

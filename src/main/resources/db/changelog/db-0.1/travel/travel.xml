@@ -1,0 +1,12 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="travels.sql" relativeToChangelogFile="true"/>
+    <include file="travel_accommodations.sql" relativeToChangelogFile="true"/>
+    <include file="travel_additional_items.sql" relativeToChangelogFile="true"/>
+    <include file="travel_orders.sql" relativeToChangelogFile="true"/>
+    <include file="travel_order_attendances.sql" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
